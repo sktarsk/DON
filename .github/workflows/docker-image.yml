@@ -12,6 +12,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . -t maheshkadali/anime-leech
+      run: docker build . -t 1hari11111111/mtp
     - name: login
-      run: docker login -u maheshkadali -p SNEHITHA@2008 && docker push maheshkadali/anime-leech
+      run: docker login -u 1hari11111111 -p hari813143 && docker push 1hari11111111/mtp

@@ -1,0 +1,16 @@
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # This will ensure the full history is fetched
+
+      - name: Set up Node.js (or your runtime environment)
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # Change version as needed
+
+      - name: Deploy to Heroku
+        run: git push https://git.heroku.com/vt1.git  # Adjust accordingly
