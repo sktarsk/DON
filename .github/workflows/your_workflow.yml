@@ -13,4 +13,4 @@ jobs:
           node-version: '14'  # Change version as needed
 
       - name: Deploy to Heroku
-        run: git push https://git.heroku.com/your-heroku-app.git main  # Adjust accordingly
+        run: git push https://git.heroku.com/vt1.git  # Adjust accordingly
