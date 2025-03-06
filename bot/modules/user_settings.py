@@ -66,7 +66,7 @@ async def get_user_settings(from_user, data: str, uset_data: str):
         thumbmsg, buttonkey = ('EXISTS ✅', '✅ Thumbnail') if await aiopath.exists(thumbpath) else ('NOT SET', 'Thumbnail')
         buttons.button_data(buttonkey, f'userset {user_id} setdata thumb')
 
-        dumpch, buttonkey = (f'<code>{user_dict.get("dump_ch")}</code>', '🔥 Dump CH') if user_dict.get('dump_ch') else ('<b>NOT SET</b>', 'Dump CH')
+        dumpch, buttonkey = (f'<code>{user_dict.get("dump_ch")}</code>', '✅ Dump CH') if user_dict.get('dump_ch') else ('<b>NOT SET</b>', 'Dump CH')
         buttons.button_data(buttonkey, f'userset {user_id} setdata dump_ch')
 
         gdxmsg, buttonkey = ('EXISTS ✅', '✅ Custom GDX') if await aiopath.exists(token_pickle) else ('NOT SET', 'Custom GDX')
