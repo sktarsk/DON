@@ -122,17 +122,17 @@ class SelectMode():
         if not mode:
             vid_modes = dict(list(VID_MODE.items())[4:]) if self._isLink else VID_MODE
             for key, value in vid_modes.items():
-                buttons.button_data(f"{'🔥 ' if self.mode == key else ''}{value}", f'vidtool {key}')
-            buttons.button_data(f'{"🔥 " if self.newname else ""}Rename', 'vidtool rename', 'header')
+                buttons.button_data(f"{'✅ ' if self.mode == key else ''}{value}", f'vidtool {key}')
+            buttons.button_data(f'{"✅ " if self.newname else ""}Rename', 'vidtool rename', 'header')
             buttons.button_data('Cancel', 'vidtool cancel', 'footer')
             if self.mode:
                 buttons.button_data('Done', 'vidtool done', 'footer')
             if self.mode in ('vid_sub', 'watermark') and await CustomFilters.sudo('', self.listener.message):
                 hardsub = self.extra_data.get('hardsub')
-                buttons.button_data(f"{'🔥 ' if hardsub else ''}Hardsub", 'vidtool hardsub', 'header')
+                buttons.button_data(f"{'✅ ' if hardsub else ''}Hardsub", 'vidtool hardsub', 'header')
                 if hardsub:
                     if self.mode == 'watermark':
-                        buttons.button_data(f"{'🔥 ' if await aiopath.exists(self.extra_data.get('subfile', '')) else ''}Sub File", 'vidtool subfile', 'header')
+                        buttons.button_data(f"{'✅ ' if await aiopath.exists(self.extra_data.get('subfile', '')) else ''}Sub File", 'vidtool subfile', 'header')
                     buttons.button_data('Font Style', 'vidtool fontstyle', 'header')
 
             if self.mode in ('compress', 'watermark') or self.extra_data.get('hardsub'):
@@ -156,14 +156,14 @@ class SelectMode():
                     buttons.button_data('Auto', 'vidtool sync_auto')
                 case 'quality':
                     bnum = 3
-                    [buttons.button_data(f"{'🔥 ' if self.extra_data.get('quality') == key else ''}{key}", f'vidtool quality {key}') for key in ['1080p', '720p', '540p', '480p', '360p']]
+                    [buttons.button_data(f"{'✅ ' if self.extra_data.get('quality') == key else ''}{key}", f'vidtool quality {key}') for key in ['1080p', '720p', '540p', '480p', '360p']]
                     buttons.button_data('<<', 'vidtool back', 'footer')
                     buttons.button_data('Done', 'vidtool done', 'footer')
                 case 'popupwm':
                     bnum, popupwm = 5, self.extra_data.get('popupwm', 0)
                     if popupwm:
                         buttons.button_data('Reset', 'vidtool popupwm 0', 'header')
-                    [buttons.button_data(f"{'🔥 ' if popupwm == key else ''}{key}", f'vidtool popupwm {key}') for key in range(2, 21, 2)]
+                    [buttons.button_data(f"{'✅ ' if popupwm == key else ''}{key}", f'vidtool popupwm {key}') for key in range(2, 21, 2)]
                     buttons.button_data('<<', 'vidtool back', 'footer')
                     buttons.button_data('Done', 'vidtool done', 'footer')
                 case 'wmsize':
@@ -172,21 +172,21 @@ class SelectMode():
                 case 'fontstyle':
                     bnum = 3
                     _buttons_style(position=None, cb='back')
-                    buttons.button_data(f"{'🔥 ' if self.extra_data.get('boldstyle') else ''}Bold Style", f"vidtool fontstyle boldstyle {self.extra_data.get('boldstyle', False)}", 'header')
+                    buttons.button_data(f"{'✅ ' if self.extra_data.get('boldstyle') else ''}Bold Style", f"vidtool fontstyle boldstyle {self.extra_data.get('boldstyle', False)}", 'header')
                 case 'fontname':
                     _buttons_style(name=False)
-                    [buttons.button_data(f"{'🔥 ' if btn == self.extra_data.get('fontname') else ''}{btn.replace('_', ' ')}", f'vidtool fontstyle fontname {btn}')
+                    [buttons.button_data(f"{'✅ ' if btn == self.extra_data.get('fontname') else ''}{btn.replace('_', ' ')}", f'vidtool fontstyle fontname {btn}')
                      for btn in ['Arial', 'Impact', 'Verdana', 'Consolas', 'DejaVu_Sans', 'Comic_Sans_MS', 'Simple_Day_Mistu']]
                 case 'fontsize':
                     bnum = 5
                     _buttons_style(size=False)
-                    [buttons.button_data(f"{'🔥 ' if str(btn) == self.extra_data.get('fontsize') else ''}{btn}", f'vidtool fontstyle fontsize {btn}') for btn in range(11, 31)]
+                    [buttons.button_data(f"{'✅ ' if str(btn) == self.extra_data.get('fontsize') else ''}{btn}", f'vidtool fontstyle fontsize {btn}') for btn in range(11, 31)]
                 case 'fontcolour':
                     bnum = 3
                     _buttons_style(colour=False)
                     colours = [('Red', '0000ff'), ('Green', '00ff00'), ('Blue', 'ff0000'), ('Yellow', '00ffff'), ('Orange', '0054ff'), ('Purple', '005aff'),
                                ('Soft Red', 'd470ff'), ('Soft Green', '80ff80'), ('Soft Blue', 'ffb84d'), ('Soft Yellow', '80ffff')]
-                    [buttons.button_data(f"{'🔥 ' if hexcolour == self.extra_data.get('fontcolour') else ''}{btn}", f'vidtool fontstyle fontcolour {hexcolour}') for btn, hexcolour in colours]
+                    [buttons.button_data(f"{'✅ ' if hexcolour == self.extra_data.get('fontcolour') else ''}{btn}", f'vidtool fontstyle fontcolour {hexcolour}') for btn, hexcolour in colours]
                 case 'wmposition':
                     buttons.button_data('Top Left', 'vidtool wmposition 5:5')
                     buttons.button_data('Top Right', 'vidtool wmposition main_w-overlay_w-5:5')
