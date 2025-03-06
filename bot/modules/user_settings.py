@@ -40,42 +40,42 @@ async def get_user_settings(from_user, data: str, uset_data: str):
     image = None
 
     if not data:
-        sendpm, buttonkey = ('ENABLE 🔥', '🔥 Send PM') if user_dict.get('enable_pm') else ('DISABLE', 'Send PM')
+        sendpm, buttonkey = ('ENABLE ✅', '✅ Send PM') if user_dict.get('enable_pm') else ('DISABLE', 'Send PM')
         buttons.button_data(buttonkey, f'userset {user_id} enable_pm')
 
-        sendss, buttonkey = ('ENABLE 🔥', '🔥 Screenshot') if user_dict.get('enable_ss') else ('DISABLE', 'Screenshot')
+        sendss, buttonkey = ('ENABLE ✅', '✅ Screenshot') if user_dict.get('enable_ss') else ('DISABLE', 'Screenshot')
         buttons.button_data(buttonkey, f'userset {user_id} enable_ss')
 
         AD = config_dict['AS_DOCUMENT']
-        ltype, buttonkey = ('DOCUMENT', '🔥 As Document') if not user_dict and AD or user_dict.get('as_doc') else ('MEDIA', 'As Document')
+        ltype, buttonkey = ('DOCUMENT', '✅ As Document') if not user_dict and AD or user_dict.get('as_doc') else ('MEDIA', 'As Document')
         buttons.button_data(buttonkey, f'userset {user_id} as_doc')
 
         MG = config_dict['MEDIA_GROUP']
-        mediagroup, buttonkey = ('ENABLE 🔥', '🔥 As Group') if user_dict.get('media_group') or 'media_group' not in user_dict and MG else ('DISABLE', 'As Group')
+        mediagroup, buttonkey = ('ENABLE ✅', '✅ As Group') if user_dict.get('media_group') or 'media_group' not in user_dict and MG else ('DISABLE', 'As Group')
         buttons.button_data(buttonkey, f'userset {user_id} media_group')
 
-        premsg, buttonkey = (prename, '🔥 Prename') if (prename := user_dict.get('prename')) else ('NOT SET', 'Prename')
+        premsg, buttonkey = (prename, '✅ Prename') if (prename := user_dict.get('prename')) else ('NOT SET', 'Prename')
         buttons.button_data(buttonkey, f'userset {user_id} setdata prename')
 
-        sufmsg, buttonkey = (sufname, '🔥 Sufname') if (sufname := user_dict.get('sufname')) else ('NOT SET', 'Sufname')
+        sufmsg, buttonkey = (sufname, '✅ Sufname') if (sufname := user_dict.get('sufname')) else ('NOT SET', 'Sufname')
         buttons.button_data(buttonkey, f'userset {user_id} setdata sufname')
 
-        rmmsg, buttonkey = ('ENABLE 🔥', '🔥 Remname') if user_dict.get('remname') else ('DISABLE', 'Remname')
+        rmmsg, buttonkey = ('ENABLE ✅', '✅ Remname') if user_dict.get('remname') else ('DISABLE', 'Remname')
         buttons.button_data(buttonkey, f'userset {user_id} setdata remname')
 
-        thumbmsg, buttonkey = ('EXISTS 🔥', '🔥 Thumbnail') if await aiopath.exists(thumbpath) else ('NOT SET', 'Thumbnail')
+        thumbmsg, buttonkey = ('EXISTS ✅', '✅ Thumbnail') if await aiopath.exists(thumbpath) else ('NOT SET', 'Thumbnail')
         buttons.button_data(buttonkey, f'userset {user_id} setdata thumb')
 
         dumpch, buttonkey = (f'<code>{user_dict.get("dump_ch")}</code>', '🔥 Dump CH') if user_dict.get('dump_ch') else ('<b>NOT SET</b>', 'Dump CH')
         buttons.button_data(buttonkey, f'userset {user_id} setdata dump_ch')
 
-        gdxmsg, buttonkey = ('EXISTS 🔥', '🔥 Custom GDX') if await aiopath.exists(token_pickle) else ('NOT SET', 'Custom GDX')
+        gdxmsg, buttonkey = ('EXISTS ✅', '✅ Custom GDX') if await aiopath.exists(token_pickle) else ('NOT SET', 'Custom GDX')
         buttons.button_data(buttonkey, f'userset {user_id} gdtool')
 
-        rccmsg, buttonkey = ('EXISTS 🔥', '🔥 RClone') if await aiopath.exists(rclone_path) else ('NOT SET', 'RClone')
+        rccmsg, buttonkey = ('EXISTS ✅', '✅ RClone') if await aiopath.exists(rclone_path) else ('NOT SET', 'RClone')
         buttons.button_data(buttonkey, f'userset {user_id} rctool')
 
-        metadata, buttonkey = ('ENABLE 🔥', '🔥 Metadata') if user_dict.get('metadata') else ('DISABLE', 'Metadata')
+        metadata, buttonkey = ('ENABLE ✅', '✅ Metadata') if user_dict.get('metadata') else ('DISABLE', 'Metadata')
         buttons.button_data(buttonkey, f'userset {user_id} setdata metadata')
 
         default_upload = user_dict.get('default_upload', '') or config_dict['DEFAULT_UPLOAD']
@@ -84,7 +84,7 @@ async def get_user_settings(from_user, data: str, uset_data: str):
         buttons.button_data(f'Engine {dub}', f'userset {user_id} {default_upload}', 'header')
 
         YOPT = config_dict['YT_DLP_OPTIONS']
-        buttonkey = '🔥 YT-DLP'
+        buttonkey = '✅ YT-DLP'
         if user_dict.get('yt_opt'):
             yto = f'\n<b><code>{escape(user_dict["yt_opt"])}</code></b>'
         elif 'yt_opt' not in user_dict and (YOPT := config_dict['YT_DLP_OPTIONS']):
@@ -95,11 +95,11 @@ async def get_user_settings(from_user, data: str, uset_data: str):
         buttons.button_data(buttonkey, f'userset {user_id} setdata yt_opt')
 
         capmode = user_dict.get('caption_style', 'mono')
-        buttons.button_data('🔥 Caption' if user_dict.get('captions') else 'Caption', f'userset {user_id} capmode')
+        buttons.button_data('✅ Caption' if user_dict.get('captions') else 'Caption', f'userset {user_id} capmode')
 
         buttons.button_data('Zip Mode', f'userset {user_id} zipmode')
 
-        sesmsg, buttonkey = ('ENABLE 🔥', '🔥 Session String') if user_dict.get('session_string') else ('DISABLE', 'Session String')
+        sesmsg, buttonkey = ('ENABLE ✅', '✅ Session String') if user_dict.get('session_string') else ('DISABLE', 'Session String')
         buttons.button_data(buttonkey, f'userset {user_id} setdata session_string')
 
         if ext_filters := user_dict.get('excluded_extensions'):
@@ -108,9 +108,9 @@ async def get_user_settings(from_user, data: str, uset_data: str):
             ex_ex = f'<code>{", ".join(GLOBAL_EXTENSION_FILTER)}</code>'
         else:
             ex_ex = ''
-        buttons.button_data('🔥 Extensions Filters' if ex_ex else 'Extensions Filters', f'userset {user_id} setdata excluded_extensions')
+        buttons.button_data('✅ Extensions Filters' if ex_ex else 'Extensions Filters', f'userset {user_id} setdata excluded_extensions')
 
-        custom_cap = 'ENABLE 🔥' if user_dict.get('captions') else 'NOT SET'
+        custom_cap = 'ENABLE ✅' if user_dict.get('captions') else 'NOT SET'
         if config_dict['PREMIUM_MODE']:
             if (user_premi := is_premium_user(user_id)) and (time_data := user_dict.get('premium_left')):
                 if time_data - time() <= 0:
@@ -174,10 +174,10 @@ async def get_user_settings(from_user, data: str, uset_data: str):
         caption, fnamecap = user_dict.get('captions'), user_dict.get('fnamecap', True)
         if not user_dict or fnamecap:
             [buttons.button_data(mode.title(), f'userset {user_id} cap{mode}') for mode in cap_modes]
-        buttons.button_data('🔥 Custom Caption' if caption else 'Custom Caption', f'userset {user_id} setdata setcap')
+        buttons.button_data('✅ Custom Caption' if caption else 'Custom Caption', f'userset {user_id} setdata setcap')
         buttons.button_data('Back', f'userset {user_id} back')
         if caption:
-            buttons.button_data('🔥 FCaption' if fnamecap else 'FCaption', f'userset {user_id} fnamecap')
+            buttons.button_data('✅ FCaption' if fnamecap else 'FCaption', f'userset {user_id} fnamecap')
             custom_cap = f'\n<code>{escape(caption)}</code>'
             if fnamecap:
                 fname_cup = '<b>┎ </b>FName Caption: <b>ENABLE</b>\n'
@@ -194,10 +194,10 @@ async def get_user_settings(from_user, data: str, uset_data: str):
                 f'<b>Example:</b> {ex_cap}')
 
     elif data == 'rctool':
-        rccmsg, buttonkey = ('EXISTS 🔥', '🔥 RClone Config') if await aiopath.exists(rclone_path) else ('NOT SET', 'RClone Config')
+        rccmsg, buttonkey = ('EXISTS ✅', '✅ RClone Config') if await aiopath.exists(rclone_path) else ('NOT SET', 'RClone Config')
         buttons.button_data(buttonkey, f'userset {user_id} setdata rclone_config')
 
-        rcpathmsg, buttonkey = (f'<code>{rc_path}</code>', '🔥 RClone Path') if (rc_path := user_dict.get('rclone_path')) else ('<b>NOT SET</b>', 'RClone Path')
+        rcpathmsg, buttonkey = (f'<code>{rc_path}</code>', '✅ RClone Path') if (rc_path := user_dict.get('rclone_path')) else ('<b>NOT SET</b>', 'RClone Path')
         buttons.button_data(buttonkey, f'userset {user_id} setdata rclone_path')
 
         buttons.button_data('Back', f'userset {user_id} back')
@@ -208,21 +208,21 @@ async def get_user_settings(from_user, data: str, uset_data: str):
                 + f'<b>┖ </b>Rclone Path: {rcpathmsg}\n')
 
     elif data == 'gdtool':
-        gdrive_id, buttonkey = (f'<code>{gd_id}</code>', '🔥 Drive ID') if (gd_id := user_dict.get('gdrive_id')) else ('<b>DISABLE</b>', 'Drive ID')
+        gdrive_id, buttonkey = (f'<code>{gd_id}</code>', '✅ Drive ID') if (gd_id := user_dict.get('gdrive_id')) else ('<b>DISABLE</b>', 'Drive ID')
         buttons.button_data(buttonkey, f'userset {user_id} setdata gdrive_id')
 
-        index_url, buttonkey = (f'<code>{index}</code>', '🔥 Index URL') if (index := user_dict.get('index_url')) else ('<b>DISABLE</b>', 'Index URL')
+        index_url, buttonkey = (f'<code>{index}</code>', '✅ Index URL') if (index := user_dict.get('index_url')) else ('<b>DISABLE</b>', 'Index URL')
         buttons.button_data(buttonkey, f'userset {user_id} setdata index_url')
 
-        token_pickle, buttonkey = ('EXISTS 🔥', '🔥 Token Pickle') if await aiopath.exists(token_pickle) else ('NOT SET', 'Token Pickle')
+        token_pickle, buttonkey = ('EXISTS ✅', '✅ Token Pickle') if await aiopath.exists(token_pickle) else ('NOT SET', 'Token Pickle')
         buttons.button_data(buttonkey, f'userset {user_id} setdata token_pickle')
 
         stop_dup = user_dict.get('stop_duplicate') or 'stop_duplicate' not in user_dict and config_dict['STOP_DUPLICATE']
-        stop_dup_msg, buttonkey = ('ENABLE 🔥', '🔥 Stop Duplicate') if stop_dup else ('DISABLE', 'Stop Duplicate')
+        stop_dup_msg, buttonkey = ('ENABLE ✅', '✅ Stop Duplicate') if stop_dup else ('DISABLE', 'Stop Duplicate')
         buttons.button_data(buttonkey, f'userset {user_id} stop_duplicate {stop_dup}', 'header')
 
         if await aiopath.exists('accounts'):
-            use_sa, buttonkey = ('ENABLE 🔥', '🔥 Use SA') if user_dict.get('use_sa') else ('DISABLE', 'Use SA')
+            use_sa, buttonkey = ('ENABLE ✅', '✅ Use SA') if user_dict.get('use_sa') else ('DISABLE', 'Use SA')
             buttons.button_data(buttonkey, f'userset {user_id} use_sa {use_sa}', 'header')
         else:
             use_sa = 'NOT AVAILABLE'
@@ -244,7 +244,7 @@ async def get_user_settings(from_user, data: str, uset_data: str):
                     'zpart': ['Part Mode', f'userset {user_id} zipmode zpart'],
                     'auto': ['Auto Mode', f'userset {user_id} zipmode auto']}
         def_data = but_dict[uset_data][0]
-        but_dict[uset_data][0] = f'🔥 {def_data}'
+        but_dict[uset_data][0] = f'✅ {def_data}'
         [buttons.button_data(key, value) for key, value in but_dict.values()]
         buttons.button_data('Back', f'userset {user_id} back')
         part_size = get_readable_file_size(config_dict['LEECH_SPLIT_SIZE'])
@@ -284,10 +284,10 @@ async def get_user_settings(from_user, data: str, uset_data: str):
                          'yt_opt': ('yt_opt', 'YT-DLP', UsetString.YT, config_dict['IMAGE_YT'], '')}
             if uset_data == 'dump_ch':
                 log_title = user_dict.get('log_title')
-                buttons.button_data('🔥 Log Title' if log_title else 'Log Title', f'userset {user_id} setdata dump_ch {not log_title}')
+                buttons.button_data('✅ Log Title' if log_title else 'Log Title', f'userset {user_id} setdata dump_ch {not log_title}')
             elif uset_data == 'metadata':
                 clean_meta = user_dict.get('clean_metadata')
-                buttons.button_data('🔥 Clean' if clean_meta else '🔥 Overwrite', f'userset {user_id} setdata metadata {not clean_meta}')
+                buttons.button_data('✅ Clean' if clean_meta else '✅ Overwrite', f'userset {user_id} setdata metadata {not clean_meta}')
 
             key, butkey, text, image, qdata = uset_dict[uset_data]
             if user_dict.get(key) or key == 'yt_opt' and config_dict['YT_DLP_OPTIONS']:
