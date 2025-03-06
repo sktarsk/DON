@@ -74,7 +74,7 @@ class ExtraSelect:
                         f'<b>├ </b>Video Format: <b>{vidext.upper()}</b>\n'
                         f'<b>├ </b>Audio Format: <b>{audext.upper()}</b>\n'
                         f'<b>├ </b>Subtitle Format: <b>{subext.upper()}</b>\n'
-                        f"<b>└ </b>Alternative Mode: <b>{'🔥 Enable' if ddict.get('alt_mode') else 'Disable'}</b>\n\n"
+                        f"<b>└ </b>Alternative Mode: <b>{'✅ Enable' if ddict.get('alt_mode') else 'Disable'}</b>\n\n"
                         'Select avalilable stream below to unpack!')
             else:
                 if value['type'] != 'video':
@@ -85,10 +85,10 @@ class ExtraSelect:
                 if sdata := ddict.get('sdata'):
                     text += '\nStream will removed:\n'
                     for i, sindex in enumerate(sdata, start=1):
-                        text += f"{i}. {ddict['stream'][sindex]['info']}\n".replace('🔥 ', '')
+                        text += f"{i}. {ddict['stream'][sindex]['info']}\n".replace('✅ ', '')
                 text += '\nSelect avalilable stream below!'
         if mode == 'extract':
-            buttons.button_data('🔥 ALT Mode' if ddict.get('alt_mode') else 'ALT Mode', f"extra {mode} alt {ddict.get('alt_mode', False)}", 'footer')
+            buttons.button_data('✅ ALT Mode' if ddict.get('alt_mode') else 'ALT Mode', f"extra {mode} alt {ddict.get('alt_mode', False)}", 'footer')
         if ddict.get('is_sub'):
             buttons.button_data('All Subs', f'extra {mode} subtitle')
         if ddict.get('is_audio'):
@@ -154,8 +154,8 @@ class ExtraSelect:
             for possition, file in self.executor.data['list'].items():
                 if file.endswith(('srt', '.ass')):
                     ref_file = self.executor.data['final'].get(possition, {}).get('ref', '')
-                    text += f'{index}. {file} {"🔥 " if ref_file else ""}\n'
-                    but_txt = f'🔥 {index}' if ref_file else index
+                    text += f'{index}. {file} {"✅ " if ref_file else ""}\n'
+                    but_txt = f'✅ {index}' if ref_file else index
                     buttons.button_data(but_txt, f'extra subsync {possition}')
                     index += 1
             buttons.button_data('Cancel', 'extra cancel', 'footer')
@@ -242,7 +242,7 @@ async def cb_extra(_, query: CallbackQuery, obj: ExtraSelect):
                         await query.answer()
                         for mapindex in sdata:
                             info = ddict['stream'][mapindex]['info']
-                            ddict['stream'][mapindex]['info'] = info.replace('🔥 ', '')
+                            ddict['stream'][mapindex]['info'] = info.replace('✅ ', '')
                         sdata.clear()
                         await obj.update_message(*obj.streams_select())
                     else:
@@ -263,7 +263,7 @@ async def cb_extra(_, query: CallbackQuery, obj: ExtraSelect):
                         new_sdata = [x for x in ddict['stream'] if x not in ddict['sdata'] and x != 0]
                         for key, value in ddict['stream'].items():
                             info = value['info']
-                            ddict['stream'][key]['info'] = f'🔥 {info}' if key in new_sdata else info.replace('🔥 ', '')
+                            ddict['stream'][key]['info'] = f'✅ {info}' if key in new_sdata else info.replace('✅ ', '')
                         ddict['sdata'] = new_sdata
                         await obj.update_message(*obj.streams_select())
                     else:
@@ -274,10 +274,10 @@ async def cb_extra(_, query: CallbackQuery, obj: ExtraSelect):
                     info = ddict['stream'][mapindex]['info']
                     if mapindex in ddict['sdata']:
                         ddict['sdata'].remove(mapindex)
-                        ddict['stream'][mapindex]['info'] = info.replace('🔥 ', '')
+                        ddict['stream'][mapindex]['info'] = info.replace('✅ ', '')
                     else:
                         ddict['sdata'].append(mapindex)
-                        ddict['stream'][mapindex]['info'] = f'🔥 {info}'
+                        ddict['stream'][mapindex]['info'] = f'✅ {info}'
                     await obj.update_message(*obj.streams_select())
         case 'extract':
             value = data[2]
