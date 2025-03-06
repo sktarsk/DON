@@ -192,7 +192,7 @@ class MultiSerach:
         elif not self.search and self.mode == 'rclone':
             user_config = self.config_path.startswith(('rclone/', 'tokens/'))
             buttons.button_data('Change Query', 'list change', 'header')
-            buttons.button_data(f'{"🔥 " if user_config else ""}User Config', 'list uc _', 'header')
+            buttons.button_data(f'{"✅ " if user_config else ""}User Config', 'list uc _', 'header')
             buttons.button_data('Files', 'list files _')
             buttons.button_data('Folders', 'list folders _')
             buttons.button_data('<<', 'list back', 'footer')
@@ -207,8 +207,8 @@ class MultiSerach:
             else:
                 user_config = self.config_path.startswith(('rclone/', 'tokens/'))
                 buttons.button_data('Change Query', 'list change', 'header')
-                buttons.button_data(f'{"🔥 " if self.isRecursive else ""}Recursive', 'list rec', 'header')
-                buttons.button_data(f'{"🔥 " if user_config else ""}User Token', 'list ut _', 'header')
+                buttons.button_data(f'{"✅ " if self.isRecursive else ""}Recursive', 'list rec', 'header')
+                buttons.button_data(f'{"✅ " if user_config else ""}User Token', 'list ut _', 'header')
                 buttons.button_data('Files', 'list files')
                 buttons.button_data('Folders', 'list folders')
                 buttons.button_data('Both', 'list both')
