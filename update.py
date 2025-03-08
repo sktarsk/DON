@@ -1,5 +1,5 @@
 from sys import exit
-from dotenv import load_dotenv, dotenv_values
+from importlib import import_module
 from logging import (
     FileHandler,
     StreamHandler,
